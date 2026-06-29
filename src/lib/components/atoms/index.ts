@@ -1,4 +1,8 @@
-export { default as Button } from "./Button";
-export { default as Checkbox } from "./Checkbox";
-export { default as Dropdown } from "./Dropdown";
-export { default as PriceRangeSlider } from "./PriceRangeSlider";
+import Button from "./Button";
+import Image from "./Image";
+import Checkbox from "./Checkbox";
+import Dropdown from "./Dropdown";
+import PriceRangeSlider from "./PriceRangeSlider";
+
+
+export default { Button, Image, Checkbox, Dropdown, PriceRangeSlider }
