@@ -1,5 +1,6 @@
-export { default as Button } from "./Button";
-export { default as Image } from "./Image";
+import Button from "./Button";
+import Image from "./Image";
+import Checkbox from "./Checkbox";
+import Dropdown from "./Dropdown";
 
-export { default as Checkbox } from "./Checkbox";
-export { default as Dropdown } from "./Dropdown";
+export default { Button, Image, Checkbox, Dropdown }
