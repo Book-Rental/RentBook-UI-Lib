@@ -5,26 +5,26 @@ interface TrackProps {
 }
 
 const Track = ({
-    left,
-    right,
-    trackRef,
+  left,
+  right,
+  trackRef,
 }: TrackProps) => {
-    return (
-        <div
-            ref={trackRef}
-            className="slider-track-container"
-        >
-            <div className="slider-track" />
+  return (
+    <div
+      ref={trackRef}
+      className="slider-track-container"
+    >
+      <div className="slider-track" />
 
-            <div
-                className="slider-range"
-                style={{
-                    left: `${left}%`,
-                    width: `${right - left}%`,
-                }}
-            />
-        </div>
-    );
+      <div
+        className="slider-range"
+        style={{
+          left: `${left}%`,
+          width: `${right - left}%`,
+        }}
+      />
+    </div>
+  );
 };
 
 export default Track;

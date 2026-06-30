@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import "./Pagination.styles.scss";
+import './Pagination.styles.scss';
 
-import { PaginationProps } from "./Pagination.types";
-import { DOTS, getPaginationRange } from "./Pagination.utils";
-import Button from "../../atoms/Button";
+import { PaginationProps } from './Pagination.types';
+import { DOTS, getPaginationRange } from './Pagination.utils';
+import Button from '../../atoms/Button';
 
 const Pagination: React.FC<PaginationProps> = ({
   currentPage,
@@ -46,8 +46,8 @@ const Pagination: React.FC<PaginationProps> = ({
             key={page}
             className={
               currentPage === page
-                ? "pagination__button pagination__button--active"
-                : "pagination__button"
+                ? 'pagination__button pagination__button--active'
+                : 'pagination__button'
             }
             onClick={() => onPageChange(Number(page))}
           >

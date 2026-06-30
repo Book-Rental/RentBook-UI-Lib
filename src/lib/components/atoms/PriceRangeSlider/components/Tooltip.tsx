@@ -5,16 +5,16 @@ interface TooltipProps {
 }
 
 const Tooltip = ({ left, value }: TooltipProps) => {
-    return (
-        <div
-            className="slider-tooltip"
-            style={{
-                left: `${left}%`,
-            }}
-        >
-            {value}
-        </div>
-    );
+  return (
+    <div
+      className="slider-tooltip"
+      style={{
+        left: `${left}%`,
+      }}
+    >
+      {value}
+    </div>
+  );
 };
 
 export default Tooltip;

@@ -1,5 +1,5 @@
-import { useCallback, useRef } from "react";
-import { clamp, percentToValue } from "../utils/math";
+import { useCallback, useRef } from 'react';
+import { clamp, percentToValue } from '../utils/math';
 
 interface UseSliderProps {
     min: number;
@@ -10,97 +10,97 @@ interface UseSliderProps {
 }
 
 export const useSlider = ({
-    min,
-    max,
-    step,
-    value,
-    onChange,
+  min,
+  max,
+  step,
+  value,
+  onChange,
 }: UseSliderProps) => {
-    const trackRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
 
-    const activeThumb = useRef<0 | 1 | null>(null);
+  const activeThumb = useRef<0 | 1 | null>(null);
 
-    const calculateValue = useCallback(
-        (clientX: number) => {
-            if (!trackRef.current) return null;
+  const calculateValue = useCallback(
+    (clientX: number) => {
+      if (!trackRef.current) return null;
 
-            const rect = trackRef.current.getBoundingClientRect();
+      const rect = trackRef.current.getBoundingClientRect();
 
-            const percent = clamp(
-                ((clientX - rect.left) / rect.width) * 100,
-                0,
-                100
-            );
+      const percent = clamp(
+        ((clientX - rect.left) / rect.width) * 100,
+        0,
+        100
+      );
 
-            let sliderValue = percentToValue(percent, min, max);
+      let sliderValue = percentToValue(percent, min, max);
 
-            sliderValue =
+      sliderValue =
                 Math.round(sliderValue / step) * step;
 
-            return sliderValue;
-        },
-        [min, max, step]
+      return sliderValue;
+    },
+    [min, max, step]
+  );
+
+  const onPointerMove = useCallback(
+    (event: PointerEvent) => {
+      if (activeThumb.current === null) return;
+
+      const sliderValue = calculateValue(event.clientX);
+
+      if (sliderValue === null) return;
+
+      const [minValue, maxValue] = value;
+
+      if (activeThumb.current === 0) {
+        onChange([
+          Math.min(sliderValue, maxValue),
+          maxValue,
+        ]);
+      } else {
+        onChange([
+          minValue,
+          Math.max(sliderValue, minValue),
+        ]);
+      }
+    },
+    [calculateValue, value, onChange]
+  );
+
+  const stopDragging = useCallback(() => {
+    activeThumb.current = null;
+
+    window.removeEventListener(
+      'pointermove',
+      onPointerMove
     );
 
-    const onPointerMove = useCallback(
-        (event: PointerEvent) => {
-            if (activeThumb.current === null) return;
-
-            const sliderValue = calculateValue(event.clientX);
-
-            if (sliderValue === null) return;
-
-            const [minValue, maxValue] = value;
-
-            if (activeThumb.current === 0) {
-                onChange([
-                    Math.min(sliderValue, maxValue),
-                    maxValue,
-                ]);
-            } else {
-                onChange([
-                    minValue,
-                    Math.max(sliderValue, minValue),
-                ]);
-            }
-        },
-        [calculateValue, value, onChange]
+    window.removeEventListener(
+      'pointerup',
+      stopDragging
     );
+  }, [onPointerMove]);
 
-    const stopDragging = useCallback(() => {
-        activeThumb.current = null;
-
-        window.removeEventListener(
-            "pointermove",
-            onPointerMove
-        );
-
-        window.removeEventListener(
-            "pointerup",
-            stopDragging
-        );
-    }, [onPointerMove]);
-
-    const startDragging =
+  const startDragging =
         (thumb: 0 | 1) =>
-            (event: React.PointerEvent<HTMLDivElement>) => {
-                event.preventDefault();
+          (event: React.PointerEvent<HTMLDivElement>) => {
+            event.preventDefault();
 
-                activeThumb.current = thumb;
+            activeThumb.current = thumb;
 
-                window.addEventListener(
-                    "pointermove",
-                    onPointerMove
-                );
+            window.addEventListener(
+              'pointermove',
+              onPointerMove
+            );
 
-                window.addEventListener(
-                    "pointerup",
-                    stopDragging
-                );
-            };
+            window.addEventListener(
+              'pointerup',
+              stopDragging
+            );
+          };
 
-    return {
-        trackRef,
-        startDragging,
-    };
+  return {
+    trackRef,
+    startDragging,
+  };
 };

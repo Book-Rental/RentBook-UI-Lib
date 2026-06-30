@@ -1,11 +1,11 @@
-import "./PriceRangeSlider.styles.scss";
+import './PriceRangeSlider.styles.scss';
 
-import { valueToPercent } from "./utils/math";
-import { useSlider } from "./hooks/useSlider";
+import { valueToPercent } from './utils/math';
+import { useSlider } from './hooks/useSlider';
 
-import Track from "./components/Track";
-import Thumb from "./components/Thumb";
-import Tooltip from "./components/Tooltip";
+import Track from './components/Track';
+import Thumb from './components/Thumb';
+import Tooltip from './components/Tooltip';
 
 import { PriceRangeSliderProps } from './PriceRangeSlider.types';
 
@@ -14,7 +14,7 @@ const PriceRangeSlider = ({
   max,
   value,
   step = 1,
-  currency = "₹",
+  currency = '₹',
   showTooltip = true,
   onChange,
 }: PriceRangeSliderProps) => {
