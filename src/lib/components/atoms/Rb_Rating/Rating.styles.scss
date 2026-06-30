@@ -1,0 +1,13 @@
+.rb-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.rb-rating-star {
+    display: inline-flex;
+}
+
+.rb-rating-star.clickable {
+    cursor: pointer;
+}
