@@ -1,7 +1,7 @@
-import React from "react";
-import "./Checkbox.styles.scss";
+import React from 'react';
+import './Checkbox.styles.scss';
 
-import { CheckboxProps } from "./Checkbox.types";
+import { CheckboxProps } from './Checkbox.types';
 
 const Checkbox: React.FC<CheckboxProps> = ({
   label,

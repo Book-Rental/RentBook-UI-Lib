@@ -1,13 +1,13 @@
-import React from "react";
-import "./Dropdown.styles.scss";
+import React from 'react';
+import './Dropdown.styles.scss';
 
-import { DropdownProps } from "./Dropdown.types";
+import { DropdownProps } from './Dropdown.types';
 
 const Dropdown: React.FC<DropdownProps> = ({
   label,
-  placeholder = "Select",
+  placeholder = 'Select',
   options,
-  value = "",
+  value = '',
   disabled = false,
   required = false,
   onChange,

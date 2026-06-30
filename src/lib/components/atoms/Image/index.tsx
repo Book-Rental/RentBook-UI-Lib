@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-type ImageShape = "default" | "rounded" | "circle";
+type ImageShape = 'default' | 'rounded' | 'circle';
 
 interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     src: string;
@@ -10,30 +10,30 @@ interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 }
 
 const shapeClasses: Record<ImageShape, string> = {
-    default: "",
-    rounded: "rounded-lg",
-    circle: "rounded-full",
+  default: '',
+  rounded: 'rounded-lg',
+  circle: 'rounded-full',
 };
 
 const Image: React.FC<ImageProps> = ({
-    src,
-    alt,
-    shape = "default",
-    aspectRatio,
-    className = "",
-    loading = "lazy",
-    ...props
+  src,
+  alt,
+  shape = 'default',
+  aspectRatio,
+  className = '',
+  loading = 'lazy',
+  ...props
 }) => {
-    return (
-        <img
-            src={src}
-            alt={alt}
-            loading={loading}
-            style={aspectRatio ? { aspectRatio } : undefined}
-            className={`object-cover ${shapeClasses[shape]} ${className}`}
-            {...props}
-        />
-    );
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading={loading}
+      style={aspectRatio ? { aspectRatio } : undefined}
+      className={`object-cover ${shapeClasses[shape]} ${className}`}
+      {...props}
+    />
+  );
 };
 
 export default Image;
