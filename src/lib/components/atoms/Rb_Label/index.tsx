@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface LabelProps {
   htmlFor?: string;
@@ -10,7 +10,7 @@ interface LabelProps {
 const Rb_Label: React.FC<LabelProps> = ({
   htmlFor,
   children,
-  className = "",
+  className = '',
   required = false,
 }) => {
   return (

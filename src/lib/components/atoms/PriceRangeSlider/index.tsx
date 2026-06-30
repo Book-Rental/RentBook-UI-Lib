@@ -7,7 +7,7 @@ import Track from "./components/Track";
 import Thumb from "./components/Thumb";
 import Tooltip from "./components/Tooltip";
 
-import { PriceRangeSliderProps } from "./PriceRangeSlider.types";
+import { PriceRangeSliderProps } from './PriceRangeSlider.types';
 
 const PriceRangeSlider = ({
     min,

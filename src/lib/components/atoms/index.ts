@@ -1,10 +1,12 @@
-import Button from "./Button";
-import Image from "./Image";
-import Checkbox from "./Checkbox";
-import Dropdown from "./Dropdown";
-import PriceRangeSlider from "./PriceRangeSlider";
-import Rb_Input from "./Rb_Input";
-import Rb_Text from "./Rb_Text";
-import Rb_Label from "./Rb_Label"
+import Button from './Button';
+import Image from './Image';
+import Checkbox from './Checkbox';
+import Dropdown from './Dropdown';
+import PriceRangeSlider from './PriceRangeSlider';
+import Rb_Input from './Rb_Input';
+import Rb_Text from './Rb_Text';
+import Rb_Label from './Rb_Label'
+import Rb_Rating from './Rb_Rating';
+import Rb_Icon from './Rb_Icon'
 
-export default { Button, Image, Checkbox, Dropdown, PriceRangeSlider, Rb_Input, Rb_Label, Rb_Text }
+export  { Button, Image, Checkbox, Dropdown, PriceRangeSlider, Rb_Input, Rb_Label, Rb_Text,Rb_Rating,Rb_Icon}
