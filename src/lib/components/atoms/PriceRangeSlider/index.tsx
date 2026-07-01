@@ -1,113 +1,83 @@
-import React from 'react';
-
 import './PriceRangeSlider.styles.scss';
+
+import { valueToPercent } from './utils/math';
+import { useSlider } from './hooks/useSlider';
+
+import Track from './components/Track';
+import Thumb from './components/Thumb';
+import Tooltip from './components/Tooltip';
 
 import { PriceRangeSliderProps } from './PriceRangeSlider.types';
 
-const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
-
+const PriceRangeSlider = ({
   min,
-
   max,
-
   value,
-
   step = 1,
-
-  disabled = false,
-
-  showLabels = true,
-
-  showValues = true,
-
+  currency = '₹',
+  showTooltip = true,
   onChange,
-
-}) => {
-
+}: PriceRangeSliderProps) => {
   const [minValue, maxValue] = value;
 
-  const left =
-        ((minValue - min) / (max - min)) * 100;
+  const left = valueToPercent(
+    minValue,
+    min,
+    max
+  );
 
-  const right =
-        ((maxValue - min) / (max - min)) * 100;
+  const right = valueToPercent(
+    maxValue,
+    min,
+    max
+  );
+
+  const { trackRef, startDragging } =
+    useSlider({
+      min,
+      max,
+      step,
+      value,
+      onChange,
+    });
 
   return (
-
     <div className="price-slider">
-
-      {showValues && (
-
-        <div className="price-slider__values">
-
-          <span>₹{minValue}</span>
-
-          <span>₹{maxValue}</span>
-
-        </div>
-
-      )}
-
       <div className="price-slider__container">
 
-        <div className="price-slider__track" />
-
-        <div
-          className="price-slider__range"
-          style={{
-            left: `${left}%`,
-            width: `${right - left}%`,
-          }}
+        <Track
+          left={left}
+          right={right}
+          trackRef={trackRef}
         />
 
-        <input
-          type="range"
-          min={min}
-          max={max}
-          step={step}
-          value={minValue}
-          disabled={disabled}
-          onChange={(e) =>
-            onChange([
-              Math.min(Number(e.target.value), maxValue),
-              maxValue,
-            ])}
-          className="thumb thumb--left"
+        {showTooltip && (
+          <>
+            <Tooltip
+              left={left}
+              value={`${currency}${minValue}`}
+            />
+
+            <Tooltip
+              left={right}
+              value={`${currency}${maxValue}`}
+            />
+          </>
+        )}
+
+        <Thumb
+          left={left}
+          onPointerDown={startDragging(0)}
         />
 
-        <input
-          type="range"
-          min={min}
-          max={max}
-          step={step}
-          value={maxValue}
-          disabled={disabled}
-          onChange={(e) =>
-            onChange([
-              minValue,
-              Math.max(Number(e.target.value), minValue),
-            ])}
-          className="thumb thumb--right"
+        <Thumb
+          left={right}
+          onPointerDown={startDragging(1)}
         />
 
       </div>
-
-      {showLabels && (
-
-        <div className="price-slider__labels">
-
-          <span>₹{min}</span>
-
-          <span>₹{max}</span>
-
-        </div>
-
-      )}
-
     </div>
-
   );
-
 };
 
 export default PriceRangeSlider;
