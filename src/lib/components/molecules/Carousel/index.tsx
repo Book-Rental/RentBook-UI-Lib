@@ -15,7 +15,7 @@ export interface CarouselSlide {
     description?: string;
 }
 
-interface CarouselProps {
+export interface CarouselProps {
     slides: CarouselSlide[];
     width?: string;
     height?: string;
@@ -57,11 +57,11 @@ const Carousel: React.FC<CarouselProps> = ({
                         }
                         : false
                 }
-                onSwiper={(swiper) => {
+                onSwiper={(swiper: SwiperType) => {
                     swiperRef.current = swiper;
                     setActiveIndex(swiper.realIndex);
                 }}
-                onSlideChange={(swiper) => {
+                onSlideChange={(swiper: SwiperType) => {
                     setActiveIndex(swiper.realIndex);
                 }}
                 className='w-full'

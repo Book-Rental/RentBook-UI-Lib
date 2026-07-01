@@ -2,7 +2,7 @@ import React from 'react';
 import { FiSearch } from 'react-icons/fi';
 import Rb_Input from '../../atoms/Rb_Input';
 
-interface SearchFieldProps
+export interface SearchFieldProps
     extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
     containerClassName?: string;
     'aria-label'?: string;
