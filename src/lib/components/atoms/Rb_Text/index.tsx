@@ -36,7 +36,7 @@ const Rb_Text: React.FC<TextProps> = ({
 
   return (
     <Component
-      className={`${styles[variant]} ${className}`}
+      className={`text-[var(--text-color)] ${styles[variant]} ${className}`}
       {...props}
     >
       {children}

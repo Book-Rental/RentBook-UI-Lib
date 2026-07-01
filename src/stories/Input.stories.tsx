@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Rb_Input from '../lib/components/atoms/Rb_Input';
-
-
-const meta: Meta<typeof Rb_Input> = {
+import Rb_Input, { InputProps } from '../lib/components/atoms/Rb_Input';
+const meta: Meta<InputProps> = {
   title: 'Components/Input',
   component: Rb_Input,
   tags: ['autodocs'],
@@ -11,18 +9,11 @@ const meta: Meta<typeof Rb_Input> = {
       control: 'select',
       options: ['text', 'email', 'password', 'number', 'search'],
     },
-    placeholder: {
-      control: 'text',
-    },
-    error: {
-      control: 'boolean',
-    },
-    disabled: {
-      control: 'boolean',
-    },
-    value: {
-      control: 'text',
-    },
+    placeholder: { control: 'text' },
+    error: { control: 'boolean' },
+    disabled: { control: 'boolean' },
+    value: { control: 'text' },
+    borderClass: { control: 'text' },
   },
 };
 
@@ -41,6 +32,23 @@ export const Error: Story = {
   args: {
     type: 'text',
     placeholder: 'Enter your name',
+    error: true,
+  },
+};
+
+export const CustomBorder: Story = {
+  args: {
+    type: 'text',
+    placeholder: 'Custom Border',
+    borderClass: 'border-gray-300',
+  },
+};
+
+export const CustomBorderWithError: Story = {
+  args: {
+    type: 'text',
+    placeholder: 'Error Border',
+    borderClass: 'border-gray-300',
     error: true,
   },
 };
