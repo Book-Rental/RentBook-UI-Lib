@@ -1,26 +1,33 @@
 import React, { forwardRef } from 'react';
 import './Input.styles.scss';
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;
+  borderClass?: string;
 }
 
 const Rb_Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ className = '', error = false, ...props }, ref) => {
-    const baseStyles =
-      'w-full p-2 mt-[10px] mb-[10px] box-border border';
+  ({ className = '', borderClass, error = false, ...props }, ref) => {
+    const classes = [
+      'w-full',
+      'p-2',
+      'mt-[10px]',
+      'mb-[10px]',
+      'box-border',
+      'border',
+      'bg-[var(--input-bg-color)]',
+      'focus:bg-[var(--input-focus-bg-color)]',
+      'text-[var(--text-color)]',
+      'focus:outline-none',
+      className,
+      error
+        ? 'border-[var(--input-error-border)] focus:border-[var(--input-error-border)]'
+        : borderClass || 'border-[var(--input-border)] focus:border-[var(--input-focus-outline)]',
+    ]
+      .filter(Boolean)
+      .join(' ');
 
-    const stateStyles = error
-      ? 'border-red-500 outline-red-500 focus:outline-red-500'
-      : 'border-black outline-black-700 focus:outline-blue-700';
-
-    return (
-      <input
-        ref={ref}
-        className={`${baseStyles} ${stateStyles} ${className}`}
-        {...props}
-      />
-    );
+    return <input ref={ref} className={classes} {...props} />;
   }
 );
 

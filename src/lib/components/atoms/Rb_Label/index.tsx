@@ -16,7 +16,7 @@ const Rb_Label: React.FC<LabelProps> = ({
   return (
     <label
       htmlFor={htmlFor}
-      className={`${className}`}
+      className={`text-[var(--text-color)] ${className}`}
     >
       {children}
       {required && <span className="ml-1 text-red-500">*</span>}
