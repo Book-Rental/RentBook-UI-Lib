@@ -1,5 +1,3 @@
-import Search from './Search'
-import Carousel from './Carousel';
-import Pagination from './Pagination';
-
-export default { Search, Carousel, Pagination };
+export { default as Search } from './Search';
+export { default as Carousel } from './Carousel';
+export { default as Pagination } from './Pagination';
