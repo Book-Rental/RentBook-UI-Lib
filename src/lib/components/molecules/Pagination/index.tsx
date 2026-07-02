@@ -4,7 +4,7 @@ import './Pagination.styles.scss';
 
 import { PaginationProps } from './Pagination.types';
 import { DOTS, getPaginationRange } from './Pagination.utils';
-import Button from '../../atoms/Button';
+import { Rb_Button } from '../../atoms';
 
 const Pagination: React.FC<PaginationProps> = ({
   currentPage,
@@ -22,12 +22,12 @@ const Pagination: React.FC<PaginationProps> = ({
   return (
     <div className="pagination">
 
-      <Button
+      <Rb_Button
         disabled={disabled || currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
       >
         &lt;
-      </Button>
+      </Rb_Button>
 
       {pages.map((page, index) => {
         if (page === DOTS) {
@@ -42,7 +42,7 @@ const Pagination: React.FC<PaginationProps> = ({
         }
 
         return (
-          <Button
+          <Rb_Button
             key={page}
             className={
               currentPage === page
@@ -52,16 +52,16 @@ const Pagination: React.FC<PaginationProps> = ({
             onClick={() => onPageChange(Number(page))}
           >
             {page}
-          </Button>
+          </Rb_Button>
         );
       })}
 
-      <Button
+      <Rb_Button
         disabled={disabled || currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
       >
         &gt;
-      </Button>
+      </Rb_Button>
 
     </div>
   );
