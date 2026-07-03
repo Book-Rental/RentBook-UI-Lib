@@ -5,7 +5,7 @@ import type { Swiper as SwiperType } from 'swiper';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Rb_Anchor, Rb_CarouselNavButton } from '../../atoms';
+import { Rb_Button, Rb_CarouselNavButton } from '../../atoms';
 
 
 export interface CarouselSlide {
@@ -24,6 +24,7 @@ export interface CarouselProps {
     showPagination?: boolean;
     showNavigation?: boolean;
     onSlideClick?: (slide: CarouselSlide) => void;
+    onButtonClick?: () => void;
 }
 
 const Carousel: React.FC<CarouselProps> = ({
@@ -35,6 +36,8 @@ const Carousel: React.FC<CarouselProps> = ({
     showPagination = true,
     showNavigation = true,
     onSlideClick,
+    onButtonClick,
+
 }) => {
     const swiperRef = useRef<SwiperType | null>(null);
 
@@ -94,13 +97,13 @@ const Carousel: React.FC<CarouselProps> = ({
                                             </p>
                                         )}
 
-                                        <Rb_Anchor
-                                            href="/books"
-                                            variant="button"
+                                        <Rb_Button
+                                            variant="primary"
                                             className="mt-6"
+                                            onClick={onButtonClick}
                                         >
                                             Browse Books
-                                        </Rb_Anchor>
+                                        </Rb_Button>
                                     </div>
                                 </div>
                             )}
