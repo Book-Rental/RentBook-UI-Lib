@@ -5,7 +5,7 @@ import type { Swiper as SwiperType } from 'swiper';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Rb_CarouselNavButton } from '../../atoms';
+import { Rb_Button, Rb_CarouselNavButton } from '../../atoms';
 
 
 export interface CarouselSlide {
@@ -24,6 +24,7 @@ export interface CarouselProps {
     showPagination?: boolean;
     showNavigation?: boolean;
     onSlideClick?: (slide: CarouselSlide) => void;
+    onButtonClick?: () => void;
 }
 
 const Carousel: React.FC<CarouselProps> = ({
@@ -35,6 +36,8 @@ const Carousel: React.FC<CarouselProps> = ({
     showPagination = true,
     showNavigation = true,
     onSlideClick,
+    onButtonClick,
+
 }) => {
     const swiperRef = useRef<SwiperType | null>(null);
 
@@ -80,19 +83,27 @@ const Carousel: React.FC<CarouselProps> = ({
                             />
 
                             {(slide.title || slide.description) && (
-                                <div className='absolute inset-0 flex items-end bg-black/40'>
-                                    <div className='p-6 text-white md:p-10'>
+                                <div className="absolute inset-0 flex items-end bg-black/40">
+                                    <div className="p-6 text-white md:p-10">
                                         {slide.title && (
-                                            <h2 className='text-2xl font-bold md:text-4xl'>
+                                            <h2 className="text-2xl font-bold md:text-4xl">
                                                 {slide.title}
                                             </h2>
                                         )}
 
                                         {slide.description && (
-                                            <p className='mt-3 max-w-xl text-sm text-gray-200 md:text-lg'>
+                                            <p className="mt-3 max-w-xl text-sm text-gray-200 md:text-lg">
                                                 {slide.description}
                                             </p>
                                         )}
+
+                                        <Rb_Button
+                                            variant="primary"
+                                            className="mt-6"
+                                            onClick={onButtonClick}
+                                        >
+                                            Browse Books
+                                        </Rb_Button>
                                     </div>
                                 </div>
                             )}
