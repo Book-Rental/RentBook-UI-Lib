@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
-import Button from '../lib/components/atoms/Button';
+import Button from '../lib/components/atoms/Rb_Button';
 
 describe('Button Component', () => {
   it('renders children text correctly', () => {
     render(<Button>Click me</Button>);
-    
+
     const button = screen.getByRole('button', { name: /click me/i });
     expect(button).toBeInTheDocument();
   });
@@ -14,7 +14,7 @@ describe('Button Component', () => {
   it('applies the correct classes for variants and sizes', () => {
     const { rerender } = render(<Button variant="outline" size="lg">Outline Large</Button>);
     let button = screen.getByRole('button');
-    
+
     // Check for outline and lg variant classes
     expect(button).toHaveClass('border-blue-600', 'px-6', 'py-3');
 
@@ -27,10 +27,10 @@ describe('Button Component', () => {
   it('triggers onClick handler when clicked', async () => {
     const user = userEvent.setup();
     const handleClick = vi.fn();
-    
+
     render(<Button onClick={handleClick}>Interactive</Button>);
     const button = screen.getByRole('button');
-    
+
     await user.click(button);
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
@@ -38,13 +38,13 @@ describe('Button Component', () => {
   it('is disabled and cannot be clicked when disabled prop is true', async () => {
     const user = userEvent.setup();
     const handleClick = vi.fn();
-    
+
     render(<Button disabled onClick={handleClick}>Disabled</Button>);
     const button = screen.getByRole('button');
-    
+
     expect(button).toBeDisabled();
     expect(button).toHaveClass('disabled:opacity-50');
-    
+
     // Attempting action to ensure handler isn't fired
     await user.click(button);
     expect(handleClick).not.toHaveBeenCalled();
@@ -60,7 +60,7 @@ describe('Button Component', () => {
         Loading Button
       </Button>
     );
-    
+
     const button = screen.getByRole('button');
 
     // 1. Accessibility & Disabled Checks
@@ -70,7 +70,7 @@ describe('Button Component', () => {
     // 2. Icon & Spinner Checks
     // Left icon should be completely missing from DOM because isLoading is true
     expect(screen.queryByTestId('left-icon')).not.toBeInTheDocument();
-    
+
     // 3. User interaction block check
     await user.click(button);
     expect(handleClick).not.toHaveBeenCalled();
@@ -93,7 +93,7 @@ describe('Button Component', () => {
   it('applies custom classNames alongside default design systems', () => {
     render(<Button className="mt-4 custom-class">Styled</Button>);
     const button = screen.getByRole('button');
-    
+
     expect(button).toHaveClass('inline-flex', 'mt-4', 'custom-class');
   });
 });
