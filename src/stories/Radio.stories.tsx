@@ -1,25 +1,25 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
-import Rb_Radio from "../lib/components/atoms/Rb_Radio";
+import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
+import Rb_Radio from '../lib/components/atoms/Rb_Radio';
 
 
 const meta: Meta<typeof Rb_Radio> = {
-  title: "Components/Radio",
+  title: 'Components/Radio',
   component: Rb_Radio,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     radioSize: {
-      control: "select",
-      options: ["sm", "md", "lg"],
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
     },
     disabled: {
-      control: "boolean",
+      control: 'boolean',
     },
     checked: {
-      control: "boolean",
+      control: 'boolean',
     },
     label: {
-      control: "text",
+      control: 'text',
     },
   },
 };
@@ -30,77 +30,77 @@ type Story = StoryObj<typeof Rb_Radio>;
 
 export const Default: Story = {
   args: {
-    label: "Male",
-    radioSize: "md",
+    label: 'Male',
+    radioSize: 'md',
   },
 };
 
 export const Small: Story = {
   args: {
-    label: "Small Radio",
-    radioSize: "sm",
+    label: 'Small Radio',
+    radioSize: 'sm',
   },
 };
 
 export const Medium: Story = {
   args: {
-    label: "Medium Radio",
-    radioSize: "md",
+    label: 'Medium Radio',
+    radioSize: 'md',
   },
 };
 
 export const Large: Story = {
   args: {
-    label: "Large Radio",
-    radioSize: "lg",
+    label: 'Large Radio',
+    radioSize: 'lg',
   },
 };
 
 export const Checked: Story = {
   args: {
-    label: "Checked",
+    label: 'Checked',
     checked: true,
-    radioSize: "md",
+    radioSize: 'md',
   },
 };
 
 export const Disabled: Story = {
   args: {
-    label: "Disabled",
+    label: 'Disabled',
     disabled: true,
-    radioSize: "md",
+    radioSize: 'md',
   },
 };
 
 export const RadioGroup: Story = {
   render: () => {
     const RadioGroupComponent = () => {
-      const [selected, setSelected] = useState("male");
+      const [selected, setSelected] = useState('male');
 
       return (
-        <div style={{ display: "flex", gap: "20px" }}>
+        <div style={{ display: 'flex', gap: '20px' }}>
           <Rb_Radio
             label="Male"
             name="gender"
             value="male"
-            checked={selected === "male"}
-            onChange={() => setSelected("male")}
+            checked={selected === 'male'}
+            onChange={() => setSelected('male')}
           />
 
           <Rb_Radio
             label="Female"
             name="gender"
             value="female"
-            checked={selected === "female"}
-            onChange={() => setSelected("female")}
+            checked={selected === 'female'}
+            onChange={() => setSelected('female')}
           />
 
           <Rb_Radio
             label="Other"
             name="gender"
             value="other"
-            checked={selected === "other"}
-            onChange={() => setSelected("other")}
+            checked={selected === 'other'}
+            onChange={() => setSelected('other')}
           />
         </div>
       );

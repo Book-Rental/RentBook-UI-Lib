@@ -1,16 +1,16 @@
-import React from "react";
-import "./Radio.styles.scss";
+import React from 'react';
+import './Radio.styles.scss';
 
 export interface RadioProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  radioSize?: "sm" | "md" | "lg";
+  radioSize?: 'sm' | 'md' | 'lg';
 }
 
 const Rb_Radio: React.FC<RadioProps> = ({
   label,
-  radioSize = "md",
-  className = "",
+  radioSize = 'md',
+  className = '',
   ...props
 }) => {
   return (
