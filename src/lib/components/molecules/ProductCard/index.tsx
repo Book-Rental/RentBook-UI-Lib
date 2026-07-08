@@ -14,60 +14,51 @@ const ProductCard: React.FC<ProductCardProps> = ({
   isAction = true,
   children,
   className = '',
+  imageClassName = '',
+  contentClassName = '',
+  imageHeight,
+  onProductClick,
 }) => {
   return (
-    <div className={`product-card ${className}`}>
+    <div
+      className={`product-card ${className}`}
+      style={
+        imageHeight !== undefined
+          ? ({ '--product-card-image-height': typeof imageHeight === 'number' ? `${imageHeight}px` : imageHeight } as React.CSSProperties)
+          : undefined
+      }
+    >
       <Rb_Image
         src={imageUrl}
         alt={title}
         shape="default"
-        className="product-card_image"
+        className={`product-card_image ${imageClassName}`}
+        onClick={onProductClick}
       />
 
-      <div className="product-card_content">
-        <Rb_Text
-          variant="h5"
-          className="product-card_title"
-        >
+      <div className={`product-card_content ${contentClassName}`}>
+        <Rb_Text variant="h5" className="product-card_title" onClick={onProductClick}>
           {title}
         </Rb_Text>
 
-        <Rb_Text
-          variant="p"
-          className="product-card_author"
-        >
+        <Rb_Text variant="p" className="product-card_author">
           {author}
         </Rb_Text>
 
         {rating !== undefined && (
           <div className="product-card_rating">
-            <Rb_Rating
-              value={rating}
-              readOnly
-              size={16}
-            />
-
-            <Rb_Text
-              variant="p"
-              className="product-card_rating-value"
-            >
+            <Rb_Rating value={rating} readOnly size={16} />
+            <Rb_Text variant="p" className="product-card_rating-value">
               {rating.toFixed(1)}
             </Rb_Text>
           </div>
         )}
 
-        <Rb_Text
-          variant="h6"
-          className="product-card_price"
-        >
+        <Rb_Text variant="h6" className="product-card_price">
           {priceText}
         </Rb_Text>
 
-        {isAction && (
-          <div className="product-card_button">
-            {children}
-          </div>
-        )}
+        {isAction && <div className="product-card_button">{children}</div>}
       </div>
     </div>
   );
