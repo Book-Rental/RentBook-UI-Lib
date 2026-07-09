@@ -1,12 +1,40 @@
-import React from 'react';
-import { describe, it, expect, vi } from 'vitest';
+import React, { useEffect } from 'react';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Carousel from '../lib/components/molecules/Carousel';
 
+
+const { slidePrevMock, slideNextMock } = vi.hoisted(() => ({
+  slidePrevMock: vi.fn(),
+  slideNextMock: vi.fn(),
+}));
+
+interface MockSwiperInstance {
+    realIndex: number;
+    slidePrev: () => void;
+    slideNext: () => void;
+}
+
+interface SwiperMockProps extends React.PropsWithChildren {
+    onSwiper?: (swiper: MockSwiperInstance) => void;
+    onSlideChange?: (swiper: MockSwiperInstance) => void;
+}
+
 vi.mock('swiper/react', () => ({
-  Swiper: ({ children }: React.PropsWithChildren) => (
-    <div data-testid="swiper">{children}</div>
-  ),
+
+  Swiper: ({ children, onSwiper, onSlideChange }: SwiperMockProps) => {
+    useEffect(() => {
+      const fakeSwiper: MockSwiperInstance = {
+        realIndex: 0,
+        slidePrev: slidePrevMock,
+        slideNext: slideNextMock,
+      };
+      onSwiper?.(fakeSwiper);
+      onSlideChange?.(fakeSwiper);
+    }, []);
+
+    return <div data-testid="swiper">{children}</div>;
+  },
   SwiperSlide: ({ children }: React.PropsWithChildren) => (
     <div data-testid="slide">{children}</div>
   ),
@@ -66,6 +94,11 @@ const slides = [
     description: 'Description Two',
   },
 ];
+
+beforeEach(() => {
+  slidePrevMock.mockClear();
+  slideNextMock.mockClear();
+});
 
 describe('Carousel', () => {
   it('renders all slides', () => {
@@ -181,5 +214,42 @@ describe('Carousel', () => {
     const image = screen.getByAltText('Book One');
 
     expect(image.parentElement).toHaveClass('h-96');
+  });
+
+
+  it('calls swiper.slideNext when the next button is clicked', () => {
+    render(<Carousel slides={slides} />);
+
+    fireEvent.click(screen.getByTestId('next-button'));
+
+    expect(slideNextMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('calls swiper.slidePrev when the prev button is clicked', () => {
+
+    render(<Carousel slides={slides} loop />);
+
+    fireEvent.click(screen.getByTestId('prev-button'));
+
+    expect(slidePrevMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('disables the prev button on the first slide when loop is false', () => {
+    render(<Carousel slides={slides} loop={false} />);
+
+    expect(screen.getByTestId('prev-button')).toBeDisabled();
+  });
+
+  it('does not disable the prev button when loop is true', () => {
+    render(<Carousel slides={slides} loop />);
+
+    expect(screen.getByTestId('prev-button')).not.toBeDisabled();
+  });
+
+
+  it('invokes onSwiper and onSlideChange without throwing and sets initial active index state', () => {
+    render(<Carousel slides={slides} />);
+    expect(screen.getByTestId('swiper')).toBeInTheDocument();
+    expect(screen.getByTestId('prev-button')).toBeDisabled();
   });
 });
