@@ -1,5 +1,6 @@
 import React from "react";
-import { Loader2 } from "lucide-react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
 
 export interface LoadingSpinnerProps {
   text?: string;
@@ -13,9 +14,9 @@ const Rb_LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   className = "",
 }) => {
   const spinnerSize = {
-    sm: "h-8 w-8",
-    md: "h-10 w-10",
-    lg: "h-14 w-14",
+    sm: "h-6 w-6",
+    md: "h-8 w-8",
+    lg: "h-10 w-10",
   };
 
   const textSize = {
@@ -29,7 +30,7 @@ const Rb_LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
       className={`flex h-[calc(100vh-64px)] items-center justify-center ${className}`}
     >
       <div className="flex flex-col items-center gap-3">
-        <Loader2
+        <AiOutlineLoading3Quarters 
           className={`${spinnerSize[size]} animate-spin text-blue-600`}
         />
 
