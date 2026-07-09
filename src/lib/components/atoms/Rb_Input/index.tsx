@@ -1,5 +1,4 @@
 import React, { forwardRef } from 'react';
-import './Input.styles.scss';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;
