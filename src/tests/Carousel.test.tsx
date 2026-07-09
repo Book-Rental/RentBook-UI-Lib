@@ -1,12 +1,13 @@
+import React from 'react';
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Carousel from '../lib/components/molecules/Carousel';
 
 vi.mock('swiper/react', () => ({
-  Swiper: ({ children }: any) => (
+  Swiper: ({ children }: React.PropsWithChildren) => (
     <div data-testid="swiper">{children}</div>
   ),
-  SwiperSlide: ({ children }: any) => (
+  SwiperSlide: ({ children }: React.PropsWithChildren) => (
     <div data-testid="slide">{children}</div>
   ),
 }));
@@ -16,16 +17,31 @@ vi.mock('swiper/modules', () => ({
   Autoplay: {},
 }));
 
+interface MockButtonProps {
+    children?: React.ReactNode;
+    onClick?: () => void;
+}
+
+interface MockTextProps {
+    children?: React.ReactNode;
+}
+
+interface MockNavButtonProps {
+    direction: 'prev' | 'next';
+    onClick?: () => void;
+    disabled?: boolean;
+}
+
 vi.mock('../lib/components/atoms', () => ({
-  Rb_Button: ({ children, onClick }: any) => (
+  Rb_Button: ({ children, onClick }: MockButtonProps) => (
     <button onClick={onClick}>{children}</button>
   ),
 
-  Rb_Text: ({ children }: any) => (
+  Rb_Text: ({ children }: MockTextProps) => (
     <div>{children}</div>
   ),
 
-  Rb_CarouselNavButton: ({ direction, onClick, disabled }: any) => (
+  Rb_CarouselNavButton: ({ direction, onClick, disabled }: MockNavButtonProps) => (
     <button
       data-testid={`${direction}-button`}
       onClick={onClick}
