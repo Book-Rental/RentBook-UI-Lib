@@ -1,7 +1,7 @@
 {
   "name": "rentbook-ui-lib",
   "private": false,
-  "version": "0.0.2",
+  "version": "0.0.5",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
@@ -33,6 +33,7 @@
     "cssnano": "^8.0.2",
     "cssnano-preset-advanced": "^8.0.2",
     "focus-trap-react": "^12.0.3",
+    "lucide-react": "^1.23.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.6.0",

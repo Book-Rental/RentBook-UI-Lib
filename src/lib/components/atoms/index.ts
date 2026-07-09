@@ -14,7 +14,8 @@ import Rb_CarouselNavButton from './Rb_CarouselNavButton';
 import ModalHeader from './ModalHeader';
 import ModalBody from './ModalBody';
 import ModalFooter from './ModalFooter';
+import Rb_LoadingSpinner from './Rb_LoadingSpinner';
 
-export { Rb_Button, Rb_Image, Checkbox, Dropdown, PriceRangeSlider, Rb_Input, Rb_Label, Rb_Text, Rb_Rating, Rb_Icon, Rb_Radio, Rb_Anchor, Rb_CarouselNavButton,ModalHeader,ModalBody,ModalFooter }
+export { Rb_Button, Rb_Image, Checkbox, Dropdown, PriceRangeSlider, Rb_Input, Rb_Label, Rb_Text, Rb_Rating, Rb_Icon, Rb_Radio, Rb_Anchor, Rb_CarouselNavButton,ModalHeader,ModalBody,ModalFooter,Rb_LoadingSpinner}
 
 
