@@ -1,28 +1,28 @@
-import React from "react";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import React from 'react';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 
 export interface LoadingSpinnerProps {
   text?: string;
-  size?: "sm" | "md" | "lg";
+  size?: 'sm' | 'md' | 'lg';
   className?: string;
 }
 
 const Rb_LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
-  text = "Loading...",
-  size = "lg",
-  className = "",
+  text = 'Loading...',
+  size = 'lg',
+  className = '',
 }) => {
   const spinnerSize = {
-    sm: "h-6 w-6",
-    md: "h-8 w-8",
-    lg: "h-10 w-10",
+    sm: 'h-6 w-6',
+    md: 'h-8 w-8',
+    lg: 'h-10 w-10',
   };
 
   const textSize = {
-    sm: "text-sm",
-    md: "text-base",
-    lg: "text-lg",
+    sm: 'text-sm',
+    md: 'text-base',
+    lg: 'text-lg',
   };
 
   return (
