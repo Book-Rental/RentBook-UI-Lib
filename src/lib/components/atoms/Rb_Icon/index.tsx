@@ -1,6 +1,5 @@
 import React from 'react';
 import { IconProps } from './Icon.types';
-import './Icon.styles.scss';
 
 const Rb_Icon: React.FC<IconProps> = ({
   icon: IconComponent,
@@ -10,7 +9,15 @@ const Rb_Icon: React.FC<IconProps> = ({
   ...props
 }) => {
   return (
-    <span className={`rb-icon ${className}`} {...props}>
+    <span
+      className={className}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+      {...props}
+    >
       <IconComponent size={size} color={color} />
     </span>
   );

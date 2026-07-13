@@ -1,7 +1,6 @@
 import React from 'react';
 import { FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
 import { RatingProps } from './Rating.types';
-import './Rating.styles.scss';
 
 const Rb_Rating: React.FC<RatingProps> = ({
   value,
@@ -14,7 +13,14 @@ const Rb_Rating: React.FC<RatingProps> = ({
   onChange,
 }) => {
   return (
-    <div className={`rb-rating ${className}`}>
+    <div
+      className={className}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '4px',
+      }}
+    >
       {Array.from({ length: max }, (_, index) => {
         const ratingValue = index + 1;
 
@@ -22,7 +28,10 @@ const Rb_Rating: React.FC<RatingProps> = ({
 
         if (ratingValue <= Math.floor(value)) {
           StarIcon = FaStar;
-        } else if (ratingValue === Math.floor(value) + 1 && value % 1 !== 0) {
+        } else if (
+          ratingValue === Math.floor(value) + 1 &&
+          value % 1 !== 0
+        ) {
           StarIcon = FaStarHalfAlt;
         } else {
           StarIcon = FaRegStar;
@@ -33,7 +42,10 @@ const Rb_Rating: React.FC<RatingProps> = ({
             key={ratingValue}
             role={!readOnly ? 'button' : undefined}
             aria-label={`Rate ${ratingValue} star${ratingValue > 1 ? 's' : ''}`}
-            className={`rb-rating-star ${!readOnly ? 'clickable' : ''}`}
+            style={{
+              display: 'inline-flex',
+              cursor: !readOnly ? 'pointer' : 'default',
+            }}
             onClick={() => {
               if (!readOnly && onChange) {
                 onChange(ratingValue);
