@@ -3,4 +3,13 @@
   flex-direction: column;
   gap: 1rem;
   padding: 1.25rem;
+  overflow-y: auto;  
+  flex: 1;         
+  min-height: 0;
+  scrollbar-width: none;      
+  -ms-overflow-style: none;   
+  &::-webkit-scrollbar {
+    display: none;             
+  }
 }
+

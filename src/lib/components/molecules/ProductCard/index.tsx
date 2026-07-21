@@ -17,16 +17,21 @@ const ProductCard: React.FC<ProductCardProps> = ({
   imageClassName = '',
   contentClassName = '',
   imageHeight,
+  cardWidth,        
+  cardMinWidth,      
+  cardMaxWidth,
   onProductClick,
 }) => {
   return (
     <div
       className={`product-card ${className}`}
-      style={
-        imageHeight !== undefined
-          ? ({ '--product-card-image-height': typeof imageHeight === 'number' ? `${imageHeight}px` : imageHeight } as React.CSSProperties)
-          : undefined
-      }
+      style={{
+        ...(imageHeight !== undefined && { '--product-card-image-height': typeof imageHeight === 'number' ? `${imageHeight}px` : imageHeight }),
+        ...(cardWidth !== undefined && { '--product-card-width': typeof cardWidth === 'number' ? `${cardWidth}px` : cardWidth }),
+        ...(cardMaxWidth !== undefined && { '--product-card-max-width': typeof cardMaxWidth === 'number' ? `${cardMaxWidth}px` : cardMaxWidth }),
+        ...(cardMinWidth !== undefined && { '--product-card-min-width': typeof cardMinWidth === 'number' ? `${cardMinWidth}px` : cardMinWidth }),
+        ...(cardMaxWidth !== undefined && { '--product-card-flex-basis': typeof cardMaxWidth === 'number' ? `${cardMaxWidth}px` : cardMaxWidth }),
+      } as React.CSSProperties}
     >
       <Rb_Image
         src={imageUrl}
